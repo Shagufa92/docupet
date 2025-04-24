@@ -1,0 +1,43 @@
+services:
+  app:
+    build:
+      context: ./docupet
+      dockerfile: Dockerfile
+    ports:
+      - "9000:90"
+    environment:
+      APP_NAME: Laravel
+      APP_ENV: local
+    networks:
+      - laravel
+  caddy:
+    image: caddy:latest
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./docupet:/var/www/html
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      - laravel
+    depends_on:
+      - app
+  db:
+    image: mysql:8.0
+    container_name: laravel-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USERNAME}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - laravel
+volumes:
+  db_data:
+networks:
+  laravel:
