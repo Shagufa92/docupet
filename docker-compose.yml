@@ -3,6 +3,11 @@ services:
     build:
       context: ./docupet
       dockerfile: Dockerfile
+    develop:
+      watch:
+        - action: sync
+          path: ./docupet
+          target: /var/www/html
     ports:
       - "9000:90"
     environment:

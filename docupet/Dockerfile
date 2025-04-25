@@ -19,6 +19,9 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy application source to the image
 COPY . /var/www/html
 
+RUN chmod -R 775 storage bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache
+
 # Set the working directory
 WORKDIR /var/www/html
 
