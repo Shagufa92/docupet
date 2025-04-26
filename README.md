@@ -4,7 +4,7 @@
 ## Clone the repo
 
 ```
-git clone https://github.com/yourusername/laravel-react-example.git
+git clone https://github.com/Shagufa92/docupet
 cd docupet
 
 ```
