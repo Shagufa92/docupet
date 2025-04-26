@@ -11,6 +11,8 @@ class PetType extends Model
 
     protected $fillable = ['name'];
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     public function breeds()
     {
         return $this->hasMany(PetBreed::class);

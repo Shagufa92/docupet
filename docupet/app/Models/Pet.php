@@ -18,6 +18,8 @@ class Pet extends Model
         'breed_id',
     ];
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     public function petType()
     {
         return $this->belongsTo(PetType::class);
@@ -25,6 +27,6 @@ class Pet extends Model
 
     public function petBreed()
     {
-        return $this->belongsTo(PetBreed::class);
+        return $this->belongsTo(PetBreed::class, 'breed_id');
     }
 }

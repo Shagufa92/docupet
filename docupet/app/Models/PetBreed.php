@@ -11,6 +11,8 @@ class PetBreed extends Model
 
     protected $fillable = ['name', 'pet_type_id', 'is_dangerous'];
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     public function petType()
     {
         return $this->belongsTo(PetType::class);
